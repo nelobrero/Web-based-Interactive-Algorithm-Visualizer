@@ -1,0 +1,363 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+   font-family: "Darker Grotesque", sans-serif;
+  font-optical-sizing: auto;
+  font-weight:bold;
+  font-style: normal;
+}
+
+body {
+      
+      background: #f7e09e;
+      transition: background 0.5s;
+    }
+    .grid12{
+       position: absolute;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -1;
+      pointer-events: none;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      grid-template-rows: repeat(4, 1fr);
+    }
+    .cell3 {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.5s;
+      transition: background-color 0.3s;
+  
+    }
+    svg {
+      width: 100%;
+      height: 100%;
+        transition: fill 0.3s;
+
+      display: block;
+    }
+
+#main {
+  display: flex;
+  height: 100%;
+}
+
+#controls {
+  position: relative;
+  background-color: rgba(255, 255, 255, 0.382); /* translucent white */
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px); /* for Safari */
+  z-index: 1;
+  width: 50%;
+  padding: 20px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  overflow-y: hidden;
+}
+
+.click {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 10px;
+ 
+}
+
+.large-title { 
+  position: absolute;
+  margin: 0;
+  bottom: 0;
+  text-align: left; 
+  font-size: 180px;
+  padding-bottom: 50px;
+  line-height: 0.6; 
+}
+
+#button {
+     width: 200px;
+     height: 60px;
+    border-radius: 50px;
+    background: none;
+    border-color: #414b6d;
+     font-size: 18px;
+}
+
+#button1 {
+  border-color: #a9b0c8;
+   font-size: 18px;
+background:none;
+   width: 130px;
+     height: 40px;
+    border-radius: 50px;
+}
+
+#button:hover, 
+#button:focus, 
+#button1:hover, 
+#button1:focus {
+  border-color: #a9b0c8;
+  background-color: #a9b0c8;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6); /* Black shadow */
+  transform: scale(1.05); /* Slightly increase size */
+  transition: all 0.1s ease; /* Smooth animation */
+}
+
+
+
+
+.primary{
+   
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); 
+  grid-template-rows: repeat(2, 1fr); 
+    gap: 20px
+
+}
+
+.secondary{
+  display: flex;
+  column-gap: 16px;
+  align-items: center;
+  justify-content:center;
+    padding-top: 20px;
+    flex-direction: row;
+    align-self: center;
+ 
+}
+
+.third {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;        /* Space between pairs */
+  margin-top: 20px;
+  width: 100%;
+}
+
+.control-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 400px;     /* Optional: Set a max width for the control rows */
+}
+
+label {
+  font-size: 20px;
+  margin-right: 20px;   /* Gap between label and select */
+}
+
+select {
+  background-color: transparent;
+  border: 2px solid #414b6d;
+  border-radius: 10px;
+  padding: 8px 12px;
+  font-size: 16px;
+  width: 150px;
+  cursor: pointer;
+}
+
+select:hover, select:focus {
+  border-color: #a9b0c8;
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+
+
+
+#grid {
+  width: 40%;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); /* Adjust for your grid size */
+  grid-template-rows: repeat(5, 1fr);
+  margin: auto;
+  aspect-ratio: 1 / 1;
+}
+
+
+.cell {
+   background-color: rgba(255, 255, 255, 0.658); /* translucent white */
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px); /* for Safari */
+  position: relative;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.cell:hover{
+   transform: translateY(-10px) scale(1);
+}
+
+/* Half-circle design */
+.cell::after {
+  content: '';
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.1); /* Light semi-transparent color */
+  left: 50%;
+  top: 0;
+  pointer-events: none; /* So you can still interact with the cells */
+
+}
+
+.cell.start::after,
+.cell.end::after,
+.cell.wall::after,
+.cell.path::after{
+  display: none !important;
+}
+
+.cell.shape1::after {
+ content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #414b6d;
+border-top-right-radius: 100%;
+  left: 0;
+  top: 0;
+
+}
+
+.cell.shape2::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #000000;
+border-top-left-radius: 100%;
+  left: 0;
+  top: 0;
+}
+
+.cell.shape3::after {
+ content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #414b6d;
+border-bottom-left-radius: 100%;
+  left: 0;
+  top: 0;
+}
+
+.cell.shape4::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #000000;
+border-bottom-right-radius: 100%;
+  left: 0;
+  top: 0;
+}
+
+
+
+/* Strong visual styles */
+.cell.start {
+  background-color: #00ba06 !important; /* Green */
+}
+
+.cell.end {
+  background-color: #ff1100 !important; /* Red */
+}
+
+.cell.wall {
+  background-color: rgb(15, 34, 94) !important; /* Dark wall */
+}
+
+/* .cell.visited {
+  animation: spreadEffect 0.4s ease-out;
+  background-color: lightblue; 
+} */
+
+.cell.visited {
+  animation: rotateVisited 0.4s ease-out;
+  transform: rotate(var(--rotation));
+}
+
+.cell.path {
+  background-color: rgb(246, 246, 107) !important;
+  animation: uprise 0.4s ease-out; /* Animate to this state */
+  z-index: 10;
+}
+@keyframes uprise {
+  0% {
+    transform: translateY(0) scale(1);
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+  }
+  100% {
+    transform: translateY(-30px) scale(1.03);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  }
+}
+
+
+
+
+
+@keyframes rotateVisited {
+  0% {
+    transform: rotate(0deg);
+    opacity: 0.6;
+  }
+  100% {
+    transform: rotate(var(--rotation));
+    opacity: 1;
+  }
+}
+
+
+.tile-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200px;
+    height: 200px;
+    display: grid;
+    grid-template-columns: repeat(11, 1fr);
+    grid-template-rows: repeat(7, 1fr);
+    grid-gap: 0;
+    z-index: -1;
+  }
+  
+  .tile {
+    width: 145px;
+    height: 145px;
+    background-image: var(--img1);
+    background-size: cover;
+    background-position: center;
+    animation: swapBg var(--duration, 2s) steps(1, end) infinite;
+    animation-delay: var(--delay, 0s);
+    position: relative;
+  }
+  
+  .tile::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background-image: var(--img2);
+    background-size: cover;
+    background-position: center;
+    animation: wipe 10s top;
+    animation-delay: var(--delay, 0s);
+  }
+
+@keyframes swapBg {
+    0%, 49% { background-image: var(--img1); }
+    50%, 100% { background-image: var(--img2); }
+}

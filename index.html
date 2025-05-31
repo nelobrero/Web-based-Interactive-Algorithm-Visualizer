@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Pathfinding Visualizer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Darker+Grotesque:wght@300..900&family=Judson:ital,wght@0,400;0,700;1,400&family=Questrial&family=Sulphur+Point:wght@300;400;700&family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+     
+
+  <div id="main">
+     
+<div class="grid12">
+    
+   <!-- Top row -->
+<div class="cell3"><svg viewBox="0 0 100 100"><rect width="100" height="100" fill="#414b6d"/><path d="M100,0 A100,100 0 0,0 0,100 L0,0 Z" fill="#090a0d"/></svg></div>
+<div class="cell3"><svg viewBox="0 0 100 100"><rect width="100" height="100" fill="#a9b0c8"/><rect x="35" y="35" width="30" height="30" fill="#090a0d"/></svg></div>
+<div class="cell3"><svg viewBox="0 0 100 100"><rect width="100" height="100" fill="#6877ab"/><circle cx="50" cy="50" r="15" fill="#edeef2"/></svg></div>
+<div class="cell3"><svg viewBox="0 0 100 100"><polygon points="0,0 100,0 100,100" fill="#090a0d"/><rect width="100" height="100" fill="none"/></svg></div>
+
+<!-- Second row -->
+<div class="cell3"><svg viewBox="0 0 100 100"><rect width="100" height="100" fill="#a9b0c8"/><path d="M0,100 A100,100 0 0,1 100,0 L0,0 Z" fill="#090a0d"/></svg></div>
+<div class="cell3"><svg viewBox="0 0 100 100"><rect width="100" height="100" fill="#090a0d"/><rect x="40" y="40" width="20" height="20" fill="#414b6d"/></svg></div>
+<div class="cell3"><svg viewBox="0 0 100 100"><rect width="100" height="100" fill="#a9b0c8"/><path d="M100,0 Q50,50 100,100" fill="#090a0d"/></svg></div>
+<div class="cell3"><svg viewBox="0 0 100 100"><rect width="100" height="100" fill="#090a0d"/><path d="M0,100 Q100,50 100,0" fill="#edeef2"/></svg></div>
+
+<!-- Third row -->
+<div class="cell3"><svg viewBox="0 0 100 100"><rect width="100" height="100" fill="#a9b0c8"/><circle cx="25" cy="75" r="25" fill="#414b6d"/></svg></div>
+<div class="cell3"><svg viewBox="0 0 100 100"><rect width="100" height="100" fill="#090a0d"/><rect x="20" y="20" width="60" height="60" fill="#090a0d"/><rect x="35" y="35" width="30" height="30" fill="#edeef2"/></svg></div>
+<div class="cell3"><svg viewBox="0 0 100 100"><rect width="100" height="100" fill="#a9b0c8"/><polygon points="0,0 100,0 0,100" fill="#414b6d"/></svg></div>
+<div class="cell3"><svg viewBox="0 0 100 100"><rect width="100" height="100" fill="#a9b0c8"/><polygon points="0,100 100,100 100,0" fill="#090a0d"/></svg></div>
+
+<!-- Bottom row -->
+<div class="cell3"><svg viewBox="0 0 100 100"><rect width="100" height="100" fill="#6877ab"/><rect x="50" y="50" width="50" height="50" fill="#edeef2"/></svg></div>
+<div class="cell3"><svg viewBox="0 0 100 100"><rect width="100" height="100" fill="#090a0d"/><circle cx="40" cy="40" r="25" fill="#414b6d"/></svg></div>
+<div class="cell3"><svg viewBox="0 0 100 100"><rect width="100" height="100" fill="#a9b0c8"/><path d="M100,0 Q50,50 100,100" fill="#6877ab"/></svg></div>
+<div class="cell3"><svg viewBox="0 0 100 100"><rect width="100" height="100" fill="#a9b0c8"/><rect x="50" y="50" width="50" height="50" fill="#a9b0c8"/></svg></div>
+
+
+  </div>
+
+    <div id="controls">
+<div class="click">
+
+
+    <div class="primary">
+      <button id="button" onclick="setMode('start')">Set Start</button>
+      <button id="button" onclick="setMode('end')">Set End</button>
+      <button id="button" onclick="setMode('wall')">Set Wall</button>
+      <button id="button" onclick="findPath()">Find Path</button>
+      <button id="button" onclick="randomizeStartEnd()">Random Start & End</button>
+  <button id="button"  onclick="randomizeWalls()">Random Walls</button>
+    </div>
+    
+    <div class="container1">
+    <div class="secondary">
+  <button id="button1"onclick="resetGrid()">Reset</button>
+      <button id="button1" onclick="undo()">Undo</button>
+      <button id="button1" onclick="redo()">Redo</button>
+    </div>
+    </div>
+
+    <div class="third">
+      <label for="speedControl">Speed:</label>
+      <select id="speedControl">
+        <option value="100">Slow</option>
+        <option value="50" selected>Medium</option>
+        <option value="10">Fast</option>
+      </select>
+
+      <label for="gridSize">Grid Size:</label>
+<select id="gridSize" onchange="updateGridSize()">
+  <option value="10">10 x 10</option>
+  <option value="20">20 x 20</option>
+  <option value="30">30 x 30</option>
+  <option value="40">40 x 40</option>
+  <option value="50">50 x 50</option>
+  <option value="60">60 x 60</option>
+  <option value="70">70 x 70</option>
+  <option value="80">80 x 80</option>
+  <option value="90">90 x 90</option>
+  <option value="100">100 x 100</option>
+</select>
+</div>
+
+
+    </div>
+           <h2 class="large-title" >Pathfinding Visualizer </h2>
+    </div>
+
+    <div id="grid"></div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
